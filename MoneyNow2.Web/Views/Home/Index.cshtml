@@ -18,28 +18,59 @@
         </div>
     </section>
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
+<div class="container-narrow">
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+    <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="muted">MoneyNow</h3>
+    </div>
+
+    <div class="appWrapper" ng-controller="MoneyNowController">
+        <form class="form-moneynow" ng-submit="convert()">
+            <h2 class="form-moneynow-heading">MONEYNOW CONVERTER</h2>
+
+            <div class="well">
+
+                <div class="control-group">
+                    <label for="txtAmount">Amount</label>
+                    <input id="txtAmount" ng-model="amount" type="text" class="input-block-level"
+                        placeholder="Amount to be converted" />
+                </div>
+                <div class="control-group">
+                    <label for="ddlFrom">From</label>
+                    <select ng-model="from" class="input-block-level" id="ddlFrom" title="Origin Currency">
+                        <option ng-repeat="currency in currencies" value="{{currency.ISOCurrencySymbol}}"
+                            data-flagurl="{{currency.FlagUrl}}">{{currency.CurrencyEnglishName}}
+                            ({{currency.ISOCurrencySymbol}})
+                        </option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="ddlTo">To</label>
+                    <select ng-model="to" class="input-block-level" id="ddlTo" title="Result Currency">
+                        <option ng-repeat="currency in currencies" value="{{currency.ISOCurrencySymbol}}"
+                            data-flagurl="{{currency.FlagUrl}}">{{currency.CurrencyEnglishName}}
+                            ({{currency.ISOCurrencySymbol}})
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+            <button class="btn btn-large btn-block btn-primary" type="submit">Get Conversion</button>
+            <br>
+
+            <div>
+                <div id="result" style="display: none" class="alert alert-success alert-block"></div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
