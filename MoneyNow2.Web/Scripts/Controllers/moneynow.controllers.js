@@ -30,8 +30,7 @@ var MoneyNowController = function ($scope, $http) {
                         .show()
                         .html("Result: <strong>" + data.currencySymbol + splitted[0] + "</strong>");
                 });
-
-
+                
             });
     };
 };
