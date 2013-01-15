@@ -4,7 +4,7 @@
     };
 
     GoogleFinanceConverterAPI.prototype.getConversion = function (amount, from, to, callback) {
-        $.get(this.serviceUrl, {'a':amount, 'from':from, 'to':to}, function (data) {
+        $.get(this.serviceUrl, { 'a': amount, 'from': from, 'to': to }, function (data) {
             var result = $(data.responseText).find('span.bld').text();
             callback(result);
         });
@@ -24,10 +24,14 @@ var MoneyNowController = function ($scope, $http) {
             .getConversion($scope.amount, $scope.from, $scope.to, function (result) {
 
                 var splitted = result.split(" ");
-                
-                $("#result")
-                    .show()
-                    .html("Result: <strong>" + splitted[0] + "</strong>");
+
+                $http.get('/api/currencyinfos/' + splitted[1]).success(function (data) {
+                    $("#result")
+                        .show()
+                        .html("Result: <strong>" + data.currencySymbol + splitted[0] + "</strong>");
+                });
+
+
             });
     };
 };
