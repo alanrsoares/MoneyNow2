@@ -1,34 +1,42 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "MoneyNow - Currency Converter";
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
+@section featured {}
+
+@section scripts
+{
+    <link rel="stylesheet" href="~/Content/select2.css"/>
+    @Scripts.Render("~/Scripts/jquery.xdomainajax.js")
+    @Scripts.Render("~/Scripts/Controllers/moneynow.controllers.js")
+    @Scripts.Render("~/Scripts/select2.min.js")
+
+    <script type="text/javascript">
+
+        var format = function (state) {
+            if (state.id && state.element) {
+                var url = $(state.element).data("flagurl");
+                return "<img width='25' src='" + url + "'> " + state.text;
+            }
+        };
+
+        $(document).ready(function () {
+
+            $("#ddlFrom").select2({
+                placeholder: "Select origin currency",
+                formatResult: format,
+                formatSelection: format
+            });
+
+            $("#ddlTo").select2({
+                placeholder: "Select destination currency",
+                formatResult: format,
+                formatSelection: format
+            });
+        });
+</script>
 }
 
-<div class="container-narrow">
-
-    <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="muted">MoneyNow</h3>
-    </div>
+<div class="container-narrow" style="max-width: 400px; margin: auto">
 
     <div class="appWrapper" ng-controller="MoneyNowController">
         <form class="form-moneynow" ng-submit="convert()">
@@ -44,18 +52,16 @@
                 <div class="control-group">
                     <label for="ddlFrom">From</label>
                     <select ng-model="from" class="input-block-level" id="ddlFrom" title="Origin Currency">
-                        <option ng-repeat="currency in currencies" value="{{currency.ISOCurrencySymbol}}"
-                            data-flagurl="{{currency.FlagUrl}}">{{currency.CurrencyEnglishName}}
-                            ({{currency.ISOCurrencySymbol}})
+                        <option ng-repeat="currency in currencies" value="{{currency.isoCurrencySymbol}}" data-flagurl="{{currency.flagUrl}}">{{currency.currencyEnglishName}}
+                            ({{currency.isoCurrencySymbol}})
                         </option>
                     </select>
                 </div>
                 <div class="control-group">
                     <label for="ddlTo">To</label>
                     <select ng-model="to" class="input-block-level" id="ddlTo" title="Result Currency">
-                        <option ng-repeat="currency in currencies" value="{{currency.ISOCurrencySymbol}}"
-                            data-flagurl="{{currency.FlagUrl}}">{{currency.CurrencyEnglishName}}
-                            ({{currency.ISOCurrencySymbol}})
+                        <option ng-repeat="currency in currencies" value="{{currency.isoCurrencySymbol}}" data-flagurl="{{currency.flagUrl}}">{{currency.currencyEnglishName}}
+                            ({{currency.isoCurrencySymbol}})
                         </option>
                     </select>
                 </div>
@@ -69,7 +75,6 @@
             </div>
 
         </form>
-
     </div>
 
 </div>
