@@ -14,7 +14,10 @@
 
 })();
 
-var MoneyNowController = function ($scope, $http) {
+
+var app = angular.module('moneyNow2', ['ui']);
+
+app.controller('MoneyNowController', function ($scope, $http) {
     $http.get('/api/currencyinfos').success(function (data) {
         $scope.currencies = data;
     });
@@ -28,9 +31,9 @@ var MoneyNowController = function ($scope, $http) {
                 $http.get('/api/currencyinfos/' + splitted[1]).success(function (data) {
                     $("#result")
                         .show()
-                        .html("Result: <strong>" + data.currencySymbol + splitted[0] + "</strong>");
+                        .html("<strong>" + data.currencySymbol + splitted[0] + "</strong>");
                 });
-                
+
             });
     };
-};
+});

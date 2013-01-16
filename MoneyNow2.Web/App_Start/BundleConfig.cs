@@ -23,6 +23,12 @@ namespace MoneyNow2.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-ui").Include(
+                        "~/Scripts/angular-ui.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

@@ -3,12 +3,16 @@
 }
 @section featured {}
 
+@section styles
+{
+    <link rel="stylesheet" href="~/Content/select2.css" />
+}
+
 @section scripts
 {
-    <link rel="stylesheet" href="~/Content/select2.css"/>
-    @Scripts.Render("~/Scripts/jquery.xdomainajax.js")
-    @Scripts.Render("~/Scripts/Controllers/moneynow.controllers.js")
-    @Scripts.Render("~/Scripts/select2.min.js")
+    <script type="text/javascript" src="~/Scripts/select2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.xdomainajax.js"></script>
+    <script type="text/javascript" src="~/Scripts/Controllers/moneynow.controllers.js"></script>
 
     <script type="text/javascript">
 
@@ -17,41 +21,45 @@
                 var url = $(state.element).data("flagurl");
                 return "<img width='25' src='" + url + "'> " + state.text;
             }
+
+            return false;
         };
 
         $(document).ready(function () {
-
             $("#ddlFrom").select2({
-                placeholder: "Select origin currency",
+                placeholder: 'Select origin currency',
                 formatResult: format,
                 formatSelection: format
             });
 
             $("#ddlTo").select2({
-                placeholder: "Select destination currency",
+                placeholder: 'Select result currency',
                 formatResult: format,
                 formatSelection: format
             });
         });
-</script>
+
+    </script>
 }
 
-<div class="container-narrow" style="max-width: 400px; margin: auto">
+<div class="container-narrow">
 
     <div class="appWrapper" ng-controller="MoneyNowController">
         <form class="form-moneynow" ng-submit="convert()">
             <h2 class="form-moneynow-heading">MONEYNOW CONVERTER</h2>
 
             <div class="well">
-
                 <div class="control-group">
                     <label for="txtAmount">Amount</label>
-                    <input id="txtAmount" ng-model="amount" type="text" class="input-block-level"
+                    <input id="txtAmount" ng-model="amount" type="number" class="input-block-level"
                         placeholder="Amount to be converted" />
                 </div>
                 <div class="control-group">
                     <label for="ddlFrom">From</label>
-                    <select ng-model="from" class="input-block-level" id="ddlFrom" title="Origin Currency">
+                    <select
+                        id="ddlFrom"
+                        ng-model="from"
+                        class="input-block-level" title="Origin Currency">
                         <option ng-repeat="currency in currencies" value="{{currency.isoCurrencySymbol}}" data-flagurl="{{currency.flagUrl}}">{{currency.currencyEnglishName}}
                             ({{currency.isoCurrencySymbol}})
                         </option>
@@ -59,7 +67,10 @@
                 </div>
                 <div class="control-group">
                     <label for="ddlTo">To</label>
-                    <select ng-model="to" class="input-block-level" id="ddlTo" title="Result Currency">
+                    <select
+                        id="ddlTo"
+                        ng-model="to"
+                        class="input-block-level" title="Result Currency">
                         <option ng-repeat="currency in currencies" value="{{currency.isoCurrencySymbol}}" data-flagurl="{{currency.flagUrl}}">{{currency.currencyEnglishName}}
                             ({{currency.isoCurrencySymbol}})
                         </option>
@@ -71,7 +82,7 @@
             <br>
 
             <div>
-                <div id="result" style="display: none" class="alert alert-success alert-block"></div>
+                <div id="result" class="alert alert-success alert-block"></div>
             </div>
 
         </form>
