@@ -41,14 +41,13 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/icons/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="~/Content/icons/apple-touch-icon-57-precomposed.png">
 
-    @RenderSection("styles", false);
+    @RenderSection("styles", false)
 
     @Scripts.Render("~/bundles/jquery")
 
 </head>
 
 <body>
-
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -89,6 +88,8 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            
+            $("#collapser").collapse('toggle');
 
             $("#menuToggler").click(function (e) {
 
