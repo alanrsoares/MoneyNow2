@@ -40,7 +40,7 @@ jQuery.ajax = (function(_ajax){
                         (/\?/.test(url) ? '&' : '?') + jQuery.param(o.data)
                     : '')
                 ),
-                format: 'xml'
+                formatFlag: 'xml'
             };
             
             // Since it's a JSONP request

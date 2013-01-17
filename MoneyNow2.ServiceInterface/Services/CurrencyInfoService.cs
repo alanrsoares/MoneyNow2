@@ -20,6 +20,7 @@ namespace MoneyNow2.ServiceInterface.Services
         }
     }
 
+    #region Model
     public class CurrencyInfo
     {
         public string RegionDisplayName { get; set; }
@@ -52,7 +53,9 @@ namespace MoneyNow2.ServiceInterface.Services
             ISOCurrencySymbol = isoCurrencySymbol;
         }
     }
+    #endregion
 
+    #region Repository
     public class CurrencyInfoRepository
     {
         public IList<CurrencyInfo> CurrencyInfos { get; set; }
@@ -91,7 +94,9 @@ namespace MoneyNow2.ServiceInterface.Services
             return CurrencyInfos.FirstOrDefault(c => c.ISOCurrencySymbol == id);
         }
     }
+    #endregion
 
+    #region REST Service
     public class CurrencyInfoService : Service
     {
         public CurrencyInfoRepository Repository { get; set; }
@@ -99,8 +104,9 @@ namespace MoneyNow2.ServiceInterface.Services
         public object Any(CurrencyInfos currencyInfos)
         {
             return string.IsNullOrEmpty(currencyInfos.Id)
-                       ? (object) Repository.GetAll()
+                       ? (object)Repository.GetAll()
                        : Repository.GetById(currencyInfos.Id);
         }
     }
+    #endregion
 }

@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\CurrencyConverterService.cs" />
     <Compile Include="Services\CurrencyInfoService.cs" />
     <Compile Include="Services\HelloService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

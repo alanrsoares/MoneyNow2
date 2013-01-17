@@ -13,6 +13,7 @@ namespace MoneyNow2.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("api/{*pathInfo}");
+            routes.IgnoreRoute("app/{*pathInfo}");
             routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
     }

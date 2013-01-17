@@ -61,6 +61,7 @@ namespace MoneyNow2.Web.App_Start
 			//Register all your dependencies
 			container.Register(new TodoRepository());
 		    container.Register(new CurrencyInfoRepository());
+            container.Register(new CurrencyConverterRepository());
 
 			//Set MVC to use the same Funq IOC as ServiceStack
 			ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));

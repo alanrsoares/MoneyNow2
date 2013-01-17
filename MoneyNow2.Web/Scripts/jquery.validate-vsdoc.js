@@ -1,4 +1,4 @@
-/*
+﻿/*
 * This file has been commented to support Visual Studio Intellisense.
 * You should not use this file at runtime inside the browser--it is only
 * intended to be used only for design-time IntelliSense.  Please use the
@@ -222,7 +222,7 @@ $.validator = function( options, form ) {
 	this.init();
 };
 
-$.validator.format = function(source, params) {
+$.validator.formatFlag = function(source, params) {
 	/// <summary>
 	/// Replaces {n} placeholders with arguments.
 	/// One or more arguments can be passed, in addition to the string template itself, to insert
@@ -240,7 +240,7 @@ $.validator.format = function(source, params) {
 		return function() {
 			var args = $.makeArray(arguments);
 			args.unshift(source);
-			return $.validator.format.apply( this, args );
+			return $.validator.formatFlag.apply( this, args );
 		};
 	if ( arguments.length > 2 && params.constructor != Array  ) {
 		params = $.makeArray(arguments).slice(1);
@@ -329,12 +329,12 @@ $.extend($.validator, {
 		creditcard: "Please enter a valid credit card number.",
 		equalTo: "Please enter the same value again.",
 		accept: "Please enter a value with a valid extension.",
-		maxlength: $.validator.format("Please enter no more than {0} characters."),
-		minlength: $.validator.format("Please enter at least {0} characters."),
-		rangelength: $.validator.format("Please enter a value between {0} and {1} characters long."),
-		range: $.validator.format("Please enter a value between {0} and {1}."),
-		max: $.validator.format("Please enter a value less than or equal to {0}."),
-		min: $.validator.format("Please enter a value greater than or equal to {0}.")
+		maxlength: $.validator.formatFlag("Please enter no more than {0} characters."),
+		minlength: $.validator.formatFlag("Please enter at least {0} characters."),
+		rangelength: $.validator.formatFlag("Please enter a value between {0} and {1} characters long."),
+		range: $.validator.formatFlag("Please enter a value between {0} and {1}."),
+		max: $.validator.formatFlag("Please enter a value less than or equal to {0}."),
+		min: $.validator.formatFlag("Please enter a value greater than or equal to {0}.")
 	},
 	
 	autoCreateRanges: false,
@@ -670,7 +670,7 @@ $.extend($.validator, {
 			if ( typeof message == "function" ) {
 				message = message.call(this, rule.parameters, element);
 			} else if (theregex.test(message)) {
-				message = jQuery.format(message.replace(theregex, '{$1}'), rule.parameters);
+				message = jQuery.formatFlag(message.replace(theregex, '{$1}'), rule.parameters);
 			}			
 			this.errorList.push({
 				message: message,
@@ -1208,7 +1208,7 @@ $.extend($.validator, {
 });
 
 // deprecated, use $.validator.format instead
-$.format = $.validator.format;
+$.formatFlag = $.validator.formatFlag;
 
 })(jQuery);
 
