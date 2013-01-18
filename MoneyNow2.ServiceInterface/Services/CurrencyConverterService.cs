@@ -29,7 +29,7 @@ namespace MoneyNow2.ServiceInterface.Services
     public class CurrencyConverterResponse
     {
         public CurrencyInfo Info { get; set; }
-        public decimal Result { get; set; }
+        public string Result { get; set; }
     }
 
     public class CurrencyConverterRepository
@@ -63,7 +63,7 @@ namespace MoneyNow2.ServiceInterface.Services
             return new CurrencyConverterResponse
                        {
                            Info = CurrencyInfoRepository.GetById(conversionResult[1]),
-                           Result = Convert.ToDecimal(conversionResult[0].Replace('.', ','))
+                           Result = conversionResult[0]
                        };
         }
     }

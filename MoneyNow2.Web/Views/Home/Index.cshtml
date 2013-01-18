@@ -21,31 +21,9 @@
     <script type="text/javascript" src="~/Scripts/angular-resource.js"></script>
     <script type="text/javascript" src="~/App/Services/moneynow.services.js"></script>
     <script type="text/javascript" src="~/App/Controllers/moneynow.controllers.js"></script>
+    
     <script type="text/javascript">
-
-        var formatFlag = function (state) {
-            if (state.id && state.element) {
-                var url = $(state.element).data("flagurl");
-                return "<img width='25' src='" + url + "'> " + state.text;
-            }
-
-            return false;
-        };
-
-        $(document).ready(function () {
-            $("#ddlFrom").select2({
-                placeholder: 'Select origin currency',
-                formatResult: formatFlag,
-                formatSelection: formatFlag
-            });
-
-            $("#ddlTo").select2({
-                placeholder: 'Select result currency',
-                formatResult: formatFlag,
-                formatSelection: formatFlag
-            });
-        });
-
+        //custom js
     </script>
 }
 
@@ -59,29 +37,15 @@
                 <div class="control-group">
                     <label for="txtAmount">Amount</label>
                     <input id="txtAmount" ng-model="amount" type="number" class="input-block-level"
-                        placeholder="Amount to be converted" />
+                           placeholder="Amount to be converted" />
                 </div>
                 <div class="control-group">
                     <label for="ddlFrom">From</label>
-                    <select
-                        id="ddlFrom"
-                        ng-model="from"
-                        class="input-block-level" title="Origin Currency">
-                        <option ng-repeat="currency in currencies" value="{{currency.isoCurrencySymbol}}" data-flagurl="{{currency.flagUrl}}">{{currency.currencyEnglishName}}
-                            ({{currency.isoCurrencySymbol}})
-                        </option>
-                    </select>
+                    <input id="ddlFrom" ui-select2="currencies" ng-model="from" data-placeholder="Select origin currency" class="input-block-level" value="BRL"/>
                 </div>
                 <div class="control-group">
                     <label for="ddlTo">To</label>
-                    <select
-                        id="ddlTo"
-                        ng-model="to"
-                        class="input-block-level" title="Result Currency">
-                        <option ng-repeat="currency in currencies" value="{{currency.isoCurrencySymbol}}" data-flagurl="{{currency.flagUrl}}">{{currency.currencyEnglishName}}
-                            ({{currency.isoCurrencySymbol}})
-                        </option>
-                    </select>
+                    <input id="ddlTo" ui-select2="currencies" ng-model="to" data-placeholder="Select destination currency" class="input-block-level" value="USD"/>
                 </div>
 
             </div>
@@ -94,6 +58,7 @@
                 </div>
             </div>
         </form>
+        
     </div>
 
 </div>
