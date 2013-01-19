@@ -33,6 +33,8 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
 
     //#region Defaults
 
+    $scope.showResult = false;
+    
     $scope.amount = 1;
 
     CurrencyInfo.get({ currencyId: "USD" }, function (item1) {
@@ -64,9 +66,9 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
                 from: $scope.from.id,
                 to: $scope.to.id
             }, function (data) {
-                $scope.showResult = true;
                 $scope.currencySymbol = data.info.currencySymbol;
                 $scope.result = data.result;
+                $scope.showResult = true;
             });
         }
     };
