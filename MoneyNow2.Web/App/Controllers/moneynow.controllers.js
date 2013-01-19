@@ -16,7 +16,8 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
         query: function (query) {
             var data = { results: [] };
             angular.forEach(currencyInfos, function (item) {
-                if (query.term.toUpperCase() === item.isoCurrencySymbol.substring(0, query.term.length).toUpperCase()) {
+                if (query.term.toUpperCase() === item.isoCurrencySymbol.substring(0, query.term.length).toUpperCase() ||
+                    query.term.toUpperCase() === item.currencyEnglishName.substring(0, query.term.length).toUpperCase()) {
                     data.results.push({
                         id: item.isoCurrencySymbol,
                         text: item.currencyEnglishName,
