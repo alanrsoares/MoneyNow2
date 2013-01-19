@@ -30,7 +30,6 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
         formatSelection: format
     };
 
-
     //#region Defaults
 
     $scope.showResult = false;
@@ -54,6 +53,12 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
     });
 
     //#endregion
+
+    $scope.switch = function () {
+        var aux = $scope.from;
+        $scope.from = $scope.to;
+        $scope.to = aux;
+    };
 
     $scope.convert = function () {
 

@@ -85,23 +85,27 @@
                     <input id="ddlTo" ui-select2="currencies" ng-model="to" data-placeholder="Select destination currency" class="input-block-level" />
                 </div>
 
+                <div class="control-group">
+                    <button class="btn btn-info btn-small btn-block" ng-click="switch()">
+                        <strong>SWITCH SELECTION</strong>
+                    </button>
+                </div>
+
             </div>
 
-            <button class="btn btn-large btn-block btn-primary" type="submit">Get Conversion</button>
-
-            <br>
-
-            <div id="result" class="alert alert-success alert-block" ng-show="showResult">
-                {{currencySymbol}} {{result}}
+            <div class="btn-group-vertical input-block-level" data-toggle="buttons-radio">
+                <button class="btn btn-large btn-block btn-primary" type="submit">Get Conversion</button>
+                <div id="result" class="alert alert-info alert-block" ng-show="showResult">
+                    {{currencySymbol}} {{result}}
+                </div>
             </div>
-
 
         </form>
 
         <div id="social" class="well well-small">
             <ul class="nav nav-pills">
                 <li>
-                    <div class="fb-like" data-href="http://moneynow2.apphb.com" data-send="true" data-layout="button_count" data-show-faces="false"></div>
+                    <div class="fb-like" data-href="http://moneynow2.apphb.com" data-send="false" data-layout="button_count" data-show-faces="false"></div>
                 </li>
                 <li>
                     <div class="g-plusone" data-size="tall" data-annotation="none"></div>
@@ -111,7 +115,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
 
 </div>
