@@ -62,6 +62,8 @@ namespace MoneyNow2.ServiceInterface.Services
 
         public CurrencyInfoRepository()
         {
+            var validCurrencies = new[] { "AED", "ANG", "ARS", "AUD", "BDT", "BGN", "BHD", "BND", "BOB", "BRL", "BWP", "CAD", "CHF", "CLP", "CNY", "COP", "CRC", "CZK", "DKK", "DOP", "DZD", "EEK", "EGP", "EUR", "FJD", "GBP", "HKD", "HNL", "HRK", "HUF", "IDR", "ILS", "INR", "JMD", "JOD", "JPY", "KES", "KRW", "KWD", "KYD", "KZT", "LBP", "LKR", "LTL", "LVL", "MAD", "MDL", "MKD", "MUR", "MVR", "MXN", "MYR", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "SAR", "SCR", "SEK", "SGD", "SKK", "SLL", "SVC", "THB", "TND", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "USD", "UYU", "UZS", "VEF", "VND", "XOF", "YER", "ZAR", "ZMK" };
+
             var cultures = CultureInfo.GetCultures(CultureTypes.AllCultures).Where(c => !c.IsNeutralCulture && c.Name.Length > 0);
 
             CurrencyInfos = new List<CurrencyInfo>();
@@ -70,7 +72,7 @@ namespace MoneyNow2.ServiceInterface.Services
                                     .Select(culture => new RegionInfo(culture.LCID))
                                     .Where(region =>
                                         CurrencyInfos.FirstOrDefault(r => r.ISOCurrencySymbol == region.ISOCurrencySymbol) == null
-                                        && region.TwoLetterISORegionName != "029"))
+                                        && validCurrencies.Contains(region.ISOCurrencySymbol)))
             {
                 CurrencyInfos.Add(new CurrencyInfo(
                                    region.DisplayName,

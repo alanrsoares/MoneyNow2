@@ -62,7 +62,7 @@ namespace MoneyNow2.ServiceInterface.Services
             var conversionResult = CurrencyConverterRepository.GetConversion(request);
             return new CurrencyConverterResponse
                        {
-                           Info = CurrencyInfoRepository.GetById(conversionResult[1]),
+                           Info = CurrencyInfoRepository.GetById(request.To),
                            Result = conversionResult[0]
                        };
         }
