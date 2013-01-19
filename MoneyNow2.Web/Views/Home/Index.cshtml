@@ -34,28 +34,31 @@
             <h2>MONEYNOW CONVERTER</h2>
 
             <div class="well">
+
                 <div class="control-group">
                     <label for="txtAmount">Amount</label>
-                    <input id="txtAmount" ng-model="amount" type="number" class="input-block-level"
+                    <input id="txtAmount" ng-model="amount" type="number" min=""     class="input-block-level"
                         placeholder="Amount to be converted" />
                 </div>
+
                 <div class="control-group">
                     <label for="ddlFrom">From</label>
                     <input id="ddlFrom" ui-select2="currencies" ng-model="from" data-placeholder="Select origin currency" class="input-block-level" />
                 </div>
+
                 <div class="control-group">
                     <label for="ddlTo">To</label>
                     <input id="ddlTo" ui-select2="currencies" ng-model="to" data-placeholder="Select destination currency" class="input-block-level" />
                 </div>
 
             </div>
+
             <button class="btn btn-large btn-block btn-primary" type="submit">Get Conversion</button>
+
             <br>
 
-            <div>
-                <div id="result" class="alert alert-success alert-block" ng-show="showResult">
-                    {{currencySymbol}} {{result}}
-                </div>
+            <div id="result" class="alert alert-success alert-block" ng-show="showResult">
+                {{currencySymbol}} {{result}}
             </div>
 
         </form>
