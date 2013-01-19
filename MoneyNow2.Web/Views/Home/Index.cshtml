@@ -12,6 +12,14 @@
             font-size: xx-large;
             text-align: center;
         }
+
+        #social {
+            height: 20px;
+        }
+
+            #social ul li {
+                padding-right: 10px;
+            }
     </style>
 }
 
@@ -40,6 +48,15 @@
             js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=226641894132932";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+        //Twitter share
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, "script", "twitter-wjs"));
         //#endregion
     </script>
 }
@@ -78,14 +95,23 @@
                 {{currencySymbol}} {{result}}
             </div>
 
-            <div id="social">
-                <div class="fb-like pull-left" data-href="http://moneynow2.apphb.com" data-send="true" data-layout="button_count" data-width="300" data-show-faces="false"></div>
-                <div class="g-plusone pull-right" data-annotation="inline" data-width="300"></div>
-            </div>
 
         </form>
+
+        <div id="social" class="well well-small">
+            <ul class="nav nav-pills">
+                <li>
+                    <div class="fb-like" data-href="http://moneynow2.apphb.com" data-send="true" data-layout="button_count" data-show-faces="false"></div>
+                </li>
+                <li>
+                    <div class="g-plusone" data-size="tall" data-annotation="none"></div>
+                </li>
+                <li>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://moneynow2.apphb.com" data-via="alanrsoares">Tweet</a>
+                </li>
+            </ul>
+        </div>
 
     </div>
 
 </div>
-
