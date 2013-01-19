@@ -17,13 +17,30 @@
 
 @section scripts
 {
+    <div id="fb-root"></div>
+
     <script type="text/javascript" src="~/Scripts/select2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/angular-resource.js"></script>
     <script type="text/javascript" src="~/App/Services/moneynow.services.js"></script>
     <script type="text/javascript" src="~/App/Controllers/moneynow.controllers.js"></script>
 
     <script type="text/javascript">
-        //custom js
+        //#region Social
+        //Google's +1
+        (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+        //Facebook Like
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=226641894132932";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        //#endregion
     </script>
 }
 
@@ -59,6 +76,11 @@
 
             <div id="result" class="alert alert-success alert-block" ng-show="showResult">
                 {{currencySymbol}} {{result}}
+            </div>
+
+            <div id="social">
+                <div class="fb-like pull-left" data-href="http://moneynow2.apphb.com" data-send="true" data-layout="button_count" data-width="300" data-show-faces="false"></div>
+                <div class="g-plusone pull-right" data-annotation="inline" data-width="300"></div>
             </div>
 
         </form>
