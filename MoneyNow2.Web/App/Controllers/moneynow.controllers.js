@@ -41,32 +41,42 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
             text: item1.currencyEnglishName,
             url: item1.flagUrl
         };
-        CurrencyInfo.get({ currencyId: "BRL" }, function (item2) {
-            $scope.to = {
-                id: item2.isoCurrencySymbol,
-                text: item2.currencyEnglishName,
-                url: item2.flagUrl
-            };
-
-            $scope.convert();
-        });
     });
 
-
+    CurrencyInfo.get({ currencyId: "BRL" }, function (item2) {
+        $scope.to = {
+            id: item2.isoCurrencySymbol,
+            text: item2.currencyEnglishName,
+            url: item2.flagUrl
+        };
+    });
 
     //#endregion
 
     $scope.convert = function () {
 
-        CurrencyConverter.get({
-            amount: $scope.amount,
-            from: $scope.from.id,
-            to: $scope.to.id
-        }, function (data) {
-            $scope.showResult = true;
-            $scope.currencySymbol = data.info.currencySymbol;
-            $scope.result = data.result;
-        });
+        if (typeof $scope.amount !== "undefined" &&
+            typeof $scope.from !== "undefined" &&
+            typeof $scope.to !== "undefined") {
+
+            CurrencyConverter.get({
+                amount: $scope.amount,
+                from: $scope.from.id,
+                to: $scope.to.id
+            }, function (data) {
+                $scope.showResult = true;
+                $scope.currencySymbol = data.info.currencySymbol;
+                $scope.result = data.result;
+            });
+        }
     };
+
+    var convertIfModelChanged = function (newValue, oldValue) {
+        if (newValue !== oldValue) $scope.convert();
+    };
+
+    $scope.$watch('amount', convertIfModelChanged);
+    $scope.$watch('from', convertIfModelChanged);
+    $scope.$watch('to', convertIfModelChanged);
 
 });

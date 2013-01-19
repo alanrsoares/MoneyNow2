@@ -21,7 +21,7 @@
     <script type="text/javascript" src="~/Scripts/angular-resource.js"></script>
     <script type="text/javascript" src="~/App/Services/moneynow.services.js"></script>
     <script type="text/javascript" src="~/App/Controllers/moneynow.controllers.js"></script>
-    
+
     <script type="text/javascript">
         //custom js
     </script>
@@ -37,15 +37,15 @@
                 <div class="control-group">
                     <label for="txtAmount">Amount</label>
                     <input id="txtAmount" ng-model="amount" type="number" class="input-block-level"
-                           placeholder="Amount to be converted" />
+                        placeholder="Amount to be converted" />
                 </div>
                 <div class="control-group">
                     <label for="ddlFrom">From</label>
-                    <input id="ddlFrom" ui-select2="currencies" ng-model="from" data-placeholder="Select origin currency" class="input-block-level"/>
+                    <input id="ddlFrom" ui-select2="currencies" ng-model="from" data-placeholder="Select origin currency" class="input-block-level" />
                 </div>
                 <div class="control-group">
                     <label for="ddlTo">To</label>
-                    <input id="ddlTo" ui-select2="currencies" ng-model="to" data-placeholder="Select destination currency" class="input-block-level"/>
+                    <input id="ddlTo" ui-select2="currencies" ng-model="to" data-placeholder="Select destination currency" class="input-block-level" />
                 </div>
 
             </div>
@@ -57,8 +57,9 @@
                     {{currencySymbol}} {{result}}
                 </div>
             </div>
+
         </form>
-        
+
     </div>
 
 </div>
