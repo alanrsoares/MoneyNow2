@@ -1,6 +1,11 @@
-﻿var app = angular.module('moneyNow2', ['ui', 'moneyNow2Services']);
+﻿var app = angular.module('moneyNow2', ['ui', 'moneyNow2Services']).
+  config(function ($routeProvider) {
+      $routeProvider.
+        when('/', { controller: MoneyNowController, templateUrl: 'app/views/converter.html' }).
+        otherwise({ redirectTo: '/' });
+  });
 
-app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, CurrencyConverter) {
+var MoneyNowController = function ($scope, $http, CurrencyInfo, CurrencyConverter) {
 
     var currencyInfos;
 
@@ -15,27 +20,27 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
     $scope.currencies = {
         query: function (query) {
             var data = { results: [] };
-            
+
             var searchTerm = query.term.toUpperCase();
             var regexp = new RegExp(eval("/" + searchTerm + "/i"));
 
             angular.forEach(currencyInfos, function (item) {
-                
+
                 var symbol = item.isoCurrencySymbol;
                 var name = item.currencyEnglishName;
                 var symbolSlice = symbol.substring(0, searchTerm.length).toUpperCase();
                 var nameSlice = name.substring(0, searchTerm.length).toUpperCase();
-                
+
                 if (searchTerm === symbolSlice ||
                     searchTerm === nameSlice ||
                     regexp.test(name)) {
-                    
+
                     data.results.push({
                         id: item.isoCurrencySymbol,
                         text: item.currencyEnglishName,
                         url: item.flagUrl
                     });
-                    
+
                 }
             });
             query.callback(data);
@@ -108,4 +113,4 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
     $scope.$watch('from', convertIfModelChanged);
     $scope.$watch('to', convertIfModelChanged);
 
-});
+};
