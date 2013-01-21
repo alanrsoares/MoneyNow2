@@ -34,7 +34,7 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
     //#region Defaults
 
     $scope.showResult = false;
-    
+
     $scope.amount = 1;
 
     CurrencyInfo.get({ currencyId: "USD" }, function (item1) {
@@ -61,22 +61,30 @@ app.controller('MoneyNowController', function ($scope, $http, CurrencyInfo, Curr
         $scope.to = aux;
     };
 
+    var isValidModel = function () {
+        return (
+            typeof $scope.amount !== "undefined" &&
+            typeof $scope.from !== "undefined" &&
+            typeof $scope.to !== "undefined"
+        );
+    };
+
     $scope.convert = function () {
 
-        if (typeof $scope.amount !== "undefined" &&
-            typeof $scope.from !== "undefined" &&
-            typeof $scope.to !== "undefined") {
+        if (!isValidModel) return false;
 
-            CurrencyConverter.get({
-                amount: $scope.amount,
-                from: $scope.from.id,
-                to: $scope.to.id
-            }, function (data) {
-                $scope.currencySymbol = data.info.currencySymbol;
-                $scope.result = data.result;
-                $scope.showResult = true;
-            });
-        }
+        CurrencyConverter.get({
+            amount: $scope.amount,
+            from: $scope.from.id,
+            to: $scope.to.id
+        }, function (data) {
+            $scope.currencySymbol = data.info.currencySymbol;
+            $scope.result = data.result;
+            $scope.showResult = true;
+        });
+
+        return true;
+
     };
 
     var convertIfModelChanged = function (newValue, oldValue) {
