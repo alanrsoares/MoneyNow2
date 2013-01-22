@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-angular.module('moneyNow2Services', ['ngResource'])
+angular.module('moneyNow2.services', ['ngResource'])
     .factory('CurrencyInfo', function ($resource) {
         return $resource('/api/currencyinfos/:currencyId', {}, {
             query: {

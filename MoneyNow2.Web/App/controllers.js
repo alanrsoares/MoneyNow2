@@ -1,11 +1,4 @@
-﻿var app = angular.module('moneyNow2', ['ui', 'moneyNow2Services']).
-  config(function ($routeProvider) {
-      $routeProvider.
-        when('/', { controller: MoneyNowController, templateUrl: 'app/views/converter.html' }).
-        otherwise({ redirectTo: '/' });
-  });
-
-var MoneyNowController = function ($scope, $http, CurrencyInfo, CurrencyConverter) {
+﻿var MoneyNowController = function ($scope, $http, CurrencyInfo, CurrencyConverter) {
 
     var currencyInfos;
 

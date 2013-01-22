@@ -37,8 +37,6 @@
 
     @RenderSection("styles", false)
 
-    @Scripts.Render("~/bundles/jquery")
-    <script type="text/javascript" src="~/Scripts/angular.min.js"></script>
 </head>
 
 <body>
@@ -75,8 +73,11 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/angular-ui.min.js"></script>
+    <script type="text/javascript" src="~/App/app.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
