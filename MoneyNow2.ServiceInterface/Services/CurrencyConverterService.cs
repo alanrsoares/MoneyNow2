@@ -60,7 +60,7 @@ namespace MoneyNow2.ServiceInterface.Services
 
             var currencyInfo = CurrencyInfoRepository.GetById(request.To);
 
-            var currencyResult = conversionResult[0].Replace(',', '*').Replace('.', ',').Replace('*', '.');
+            var currencyResult = conversionResult[0]; //.Replace(',', '*').Replace('.', ',').Replace('*', '.');
 
             var result = Convert.ToDouble(currencyResult).ToString("C", new CultureInfo(currencyInfo.Locale));
 
