@@ -89,7 +89,6 @@
             from: $scope.from.id,
             to: $scope.to.id
         }, function (data) {
-            $scope.currencySymbol = data.info.currencySymbol;
             $scope.result = data.result;
             $scope.showResult = true;
         });

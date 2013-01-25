@@ -28,6 +28,8 @@ namespace MoneyNow2.ServiceInterface.Services
         public string CurrencyNativeName { get; set; }
         public string CurrencySymbol { get; set; }
         public string ISOCurrencySymbol { get; set; }
+        public int Locale { get; set; }
+
         public string FlagUrl
         {
             get
@@ -38,16 +40,17 @@ namespace MoneyNow2.ServiceInterface.Services
             }
         }
 
-        public CurrencyInfo(string regionDisplayName, string regionEnglishName, string regionNativeName, string twoLetterIsoRegionName, string currencyEnglishName, string currencyNativeName, string currencySymbol, string isoCurrencySymbol)
+        public CurrencyInfo(RegionInfo region, CultureInfo culture)
         {
-            RegionDisplayName = regionDisplayName;
-            RegionName = regionEnglishName;
-            RegionNativeName = regionNativeName;
-            TwoLetterIsoRegionName = twoLetterIsoRegionName;
-            CurrencyEnglishName = currencyEnglishName;
-            CurrencyNativeName = currencyNativeName;
-            CurrencySymbol = currencySymbol;
-            ISOCurrencySymbol = isoCurrencySymbol;
+            RegionDisplayName = region.DisplayName;
+            RegionName = region.Name;
+            RegionNativeName = region.NativeName;
+            TwoLetterIsoRegionName = region.TwoLetterISORegionName;
+            CurrencyEnglishName = region.CurrencyEnglishName;
+            CurrencyNativeName = region.CurrencyNativeName;
+            CurrencySymbol = region.CurrencySymbol;
+            ISOCurrencySymbol = region.ISOCurrencySymbol;
+            Locale = culture.LCID;
         }
     }
     #endregion
@@ -65,21 +68,15 @@ namespace MoneyNow2.ServiceInterface.Services
 
             CurrencyInfos = new List<CurrencyInfo>();
 
-            foreach (var region in cultures
-                                    .Select(culture => new RegionInfo(culture.LCID))
-                                    .Where(region =>
-                                        CurrencyInfos.FirstOrDefault(r => r.ISOCurrencySymbol == region.ISOCurrencySymbol) == null
-                                        && validCurrencies.Contains(region.ISOCurrencySymbol)))
+            foreach (var culture in cultures)
             {
-                CurrencyInfos.Add(new CurrencyInfo(
-                                   region.DisplayName,
-                                   region.EnglishName,
-                                   region.NativeName,
-                                   region.TwoLetterISORegionName,
-                                   region.CurrencyEnglishName,
-                                   region.CurrencyNativeName,
-                                   region.CurrencySymbol,
-                                   region.ISOCurrencySymbol));
+                var region = new RegionInfo(culture.LCID);
+
+                if (CurrencyInfos.FirstOrDefault(r => r.ISOCurrencySymbol == region.ISOCurrencySymbol) == null
+                    && validCurrencies.Contains(region.ISOCurrencySymbol))
+                {
+                    CurrencyInfos.Add(new CurrencyInfo(region, culture));
+                }
             }
         }
 

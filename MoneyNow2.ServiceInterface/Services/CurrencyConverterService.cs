@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Globalization;
+using System.Net;
 using System.Text.RegularExpressions;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
@@ -55,10 +57,16 @@ namespace MoneyNow2.ServiceInterface.Services
         public dynamic Get(CurrencyConverter request)
         {
             var conversionResult = CurrencyConverterRepository.GetConversion(request);
+
+            var currencyInfo = CurrencyInfoRepository.GetById(request.To);
+
+            var currencyResult = conversionResult[0].Replace(',', '*').Replace('.', ',').Replace('*', '.');
+
+            var result = Convert.ToDouble(currencyResult).ToString("C", new CultureInfo(currencyInfo.Locale));
+
             return new CurrencyConverterResponse
                        {
-                           Info = CurrencyInfoRepository.GetById(request.To),
-                           Result = conversionResult[0]
+                           Result = result
                        };
         }
     }
