@@ -11,13 +11,11 @@
     });
 
     $scope.currencies = {
-        query: function (query) {
-            var data = { results: [] };
+        query:function (query) {
+            var data = { results:[] };
 
             var searchTerm = query.term.toUpperCase();
-
             var pattern = "/" + searchTerm + "/i";
-
             var regexp = new RegExp(pattern);
 
             angular.forEach(currencyInfos, function (item) {
@@ -32,17 +30,17 @@
                     regexp.test(name)) {
 
                     data.results.push({
-                        id: item.isoCurrencySymbol,
-                        text: item.currencyEnglishName,
-                        url: item.flagUrl
+                        id:item.isoCurrencySymbol,
+                        text:item.currencyEnglishName,
+                        url:item.flagUrl
                     });
 
                 }
             });
             query.callback(data);
         },
-        formatResult: format,
-        formatSelection: format
+        formatResult:format,
+        formatSelection:format
     };
 
     //#region Defaults
@@ -51,19 +49,19 @@
 
     $scope.amount = 1;
 
-    CurrencyInfo.get({ currencyId: "USD" }, function (item1) {
+    CurrencyInfo.get({ currencyId:"USD" }, function (item1) {
         $scope.from = {
-            id: item1.isoCurrencySymbol,
-            text: item1.currencyEnglishName,
-            url: item1.flagUrl
+            id:item1.isoCurrencySymbol,
+            text:item1.currencyEnglishName,
+            url:item1.flagUrl
         };
     });
 
-    CurrencyInfo.get({ currencyId: "BRL" }, function (item2) {
+    CurrencyInfo.get({ currencyId:"BRL" }, function (item2) {
         $scope.to = {
-            id: item2.isoCurrencySymbol,
-            text: item2.currencyEnglishName,
-            url: item2.flagUrl
+            id:item2.isoCurrencySymbol,
+            text:item2.currencyEnglishName,
+            url:item2.flagUrl
         };
     });
 
@@ -78,9 +76,9 @@
     var isValidModel = function () {
         return (
             typeof $scope.amount !== "undefined" &&
-            typeof $scope.from !== "undefined" &&
-            typeof $scope.to !== "undefined"
-        );
+                typeof $scope.from !== "undefined" &&
+                typeof $scope.to !== "undefined"
+            );
     };
 
     $scope.convert = function () {
@@ -88,9 +86,9 @@
         if (!isValidModel()) return false;
 
         CurrencyConverter.get({
-            amount: $scope.amount,
-            from: $scope.from.id,
-            to: $scope.to.id
+            amount:$scope.amount,
+            from:$scope.from.id,
+            to:$scope.to.id
         }, function (data) {
             $scope.result = data.result;
             $scope.showResult = true;
@@ -109,3 +107,9 @@
     $scope.$watch('to', convertIfModelChanged);
 
 };
+
+$(document).ready(function () {
+    $('.select2-search-choice, .select2-search-choice-close').click(function (e) {
+        return false;
+    });
+});

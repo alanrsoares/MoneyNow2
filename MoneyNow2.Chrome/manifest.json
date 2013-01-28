@@ -1,0 +1,15 @@
+{
+    "manifest_version":2,
+
+    "name":"MoneyNow2",
+    "description":"Best Online Currency Converter you'll ever find.",
+    "version":"1.0",
+
+    "permissions":[
+        "http://moneynow2.apphb.com/"
+    ],
+    "browser_action":{
+        "default_icon":"assets/images/icon32.png",
+        "default_popup":"popup.html"
+    }
+}

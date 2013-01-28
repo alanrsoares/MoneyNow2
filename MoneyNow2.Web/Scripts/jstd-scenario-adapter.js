@@ -37,8 +37,8 @@
  * You have to configure this to work together with JSTD proxy.
  *
  * Let's assume you are using the above configuration (jsTestDriver.conf and jstd-scenario-adapter-config.js):
- * Now, when you call <code>browser().navigateTo('index.html')</code> in your scenario test, the browser will open /your-prefix/index.html.
- * That matches the proxy, so JSTD will proxy this request to http://localhost:8000/index.html.
+ * Now, when you call <code>browser().navigateTo('popup.html')</code> in your scenario test, the browser will open /your-prefix/popup.html.
+ * That matches the proxy, so JSTD will proxy this request to http://localhost:8000/popup.html.
  */
 
 /**
