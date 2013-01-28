@@ -107,9 +107,3 @@
     $scope.$watch('to', convertIfModelChanged);
 
 };
-
-$(document).ready(function () {
-    $('.select2-search-choice, .select2-search-choice-close').click(function (e) {
-        return false;
-    });
-});
