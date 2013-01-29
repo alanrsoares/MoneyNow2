@@ -2,8 +2,11 @@
 
     var currencyInfos;
 
-    var format = function (state) {
-        return "<img style='width: 25px' src='" + state.url + "'/> - " + state.text + " - (" + state.id + ")";
+    var formatSelection = function (state) {
+        return  state.text + " - (" + state.id + ")";
+    };
+    var formatResult = function (state) {
+        return "<img style='width: 25px' src='" + state.url + "'/> - " + formatSelection(state);
     };
 
     CurrencyInfo.query(function (data) {
@@ -39,8 +42,8 @@
             });
             query.callback(data);
         },
-        formatResult:format,
-        formatSelection:format
+        formatResult:formatResult,
+        formatSelection:formatSelection
     };
 
     //#region Defaults
